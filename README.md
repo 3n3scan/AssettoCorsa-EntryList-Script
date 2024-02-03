@@ -14,3 +14,11 @@
 
 ## Instructions
 - Just start the `AssettoCorsa EntryList Script v1.0.exe` file and follow the instructions.
+
+## Preview
+
+<p align="center">
+  <a href="https://3n3scan.github.io" target="_blank">
+    <img src="https://raw.githubusercontent.com/3n3scan/AssettoCorsa-EntryList-Script/main/source/images/preview.png" alt="3n3scan's Github Profile" title="3n3scan's Github Profile">
+  </a>
+</p>
