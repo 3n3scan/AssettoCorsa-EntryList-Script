@@ -24,20 +24,13 @@ FILE = 'entry_list.ini'
 
 def sort_cars():
     try:
-        # Lese die Datei
         with open(FILE, 'r') as file:
             data = file.read()
 
-        # Extrahiere die Fahrzeugabschnitte
         cars = re.findall(r'\[CAR_\d+\].*?(?=\[CAR_\d+\]|\Z)', data, re.DOTALL)
-
-        # Sortiere die Fahrzeugabschnitte
         sorted_cars = sorted(cars, key=lambda car: int(re.search(r'\[CAR_(\d+)\]', car).group(1)))
-
-        # Ersetze die alten Fahrzeugabschnitte durch die sortierten
         sorted_data = re.sub(r'\[CAR_\d+\].*?(?=\[CAR_\d+\]|\Z)', '', data, flags=re.DOTALL) + '\n'.join(sorted_cars)
 
-        # Schreibe die sortierte Liste zurück in die Datei
         with open(FILE, 'w') as file:
             file.write(sorted_data)
 
@@ -57,14 +50,11 @@ def sort_cars():
 
 def add_adan():
     try:
-        # Lese die Datei
         with open(FILE, 'r') as file:
             lines = file.readlines()
 
-        # Füge "/ADAn" an das Ende jeder Zeile, die mit "SKIN=" beginnt
         lines = [line.rstrip() + '/ADAn\n' if line.startswith('SKIN=') else line for line in lines]
 
-        # Schreibe die geänderten Zeilen zurück in die Datei
         with open(FILE, 'w') as file:
             file.writelines(lines)
 
@@ -84,11 +74,9 @@ def add_adan():
 
 def add_ai():
     try:
-        # Lese die Datei
         with open(FILE, 'r') as file:
             lines = file.readlines()
 
-        # Füge "AI=fixed" an das Ende jeder Zeile, die "RESTRICTOR=0" enthält
         with open(FILE, 'w') as file:
             for line in lines:
                 file.write(line)
@@ -111,28 +99,17 @@ def add_ai():
 
 def get_models():
     try:
-        # Lese die Datei
         with open(FILE, 'r') as file:
             data = file.read()
-            
-        # Extrahiere die Modelle
-        models = re.findall(r'MODEL=(.*?)\n', data)
-            
-        # Entferne Duplikate
-        unique_models = list(set(models))
 
-        # Teile Modelle in zwei Listen auf
+        models = re.findall(r'MODEL=(.*?)\n', data)
+        unique_models = list(set(models))
         other_models = [model for model in unique_models if 'traffic' not in model.lower()]
         traffic_models = [model for model in unique_models if 'traffic' in model.lower()]
-
-        # Sortiere die beiden Listen
         other_models.sort()
         traffic_models.sort()
-
-        # Füge die Listen zusammen
         sorted_models = other_models + traffic_models
 
-        # Printe die sortierten Modelle in die Konsole
         print('Extracted all models:\n===============================')
         for model in sorted_models:
             print(f'{model};')
