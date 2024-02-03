@@ -13,7 +13,7 @@
 + Get all models listed (without duplicates)
 
 ## Instructions
-- Just start the `AssettoCorsa EntryList Script v1.0.exe` file and follow the instructions.
+- Just start the `AssettoCorsa EntryList Script.exe` file and follow the instructions.
 
 ## Preview
 
